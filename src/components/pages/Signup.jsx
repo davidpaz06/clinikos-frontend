@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./signup.module.css";
+import styles from "./Signup.module.css";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -25,7 +25,6 @@ const Signup = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
 
     try {
       const response = await fetch("/register", {
@@ -33,12 +32,13 @@ const Signup = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(Object.fromEntries(formData)),
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
         navigate("/home");
       } else {
+        console.log(response);
         const error = await response.text();
         console.error("Error al registrar el usuario:", error);
         alert("Error al registrar el usuario");
