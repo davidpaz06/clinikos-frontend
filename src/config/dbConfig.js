@@ -2,7 +2,7 @@ export const dbConfig = {
   user: "postgres",
   host: "localhost",
   password: "postgres",
-  database: "test",
+  database: "postgres",
   port: 5432,
   ssl: false,
   max: 20,
