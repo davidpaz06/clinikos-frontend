@@ -1,15 +1,16 @@
-body {
+.landingPage {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #282929;
 }
+
 .container {
   text-align: center;
 }
+
 .button {
   display: inline-block;
   margin: 10px;
@@ -22,6 +23,7 @@ body {
   cursor: pointer;
   text-decoration: none;
 }
+
 .button:hover {
   background-color: #0056b3;
 }
