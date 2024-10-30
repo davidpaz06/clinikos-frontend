@@ -26,6 +26,7 @@ class Database {
       console.error(`Error executing query:`, err);
       throw err;
     } finally {
+      
       client.release();
     }
   }
