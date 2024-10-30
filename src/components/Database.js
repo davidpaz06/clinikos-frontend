@@ -1,5 +1,5 @@
 import { Pool } from "pg";
-import { dbConfig } from "../config/dbConfig";
+import { dbConfig } from "../config/dbConfig.js";
 
 class Database {
   constructor(queries) {

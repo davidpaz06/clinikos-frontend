@@ -6,7 +6,7 @@ import fileURLToPath from "url";
 const app = express();
 
 import Database from "./components/Database";
-import queries from "./config/queries.json";
+import queries from "../config/queries.json";
 const db = new Database(queries);
 
 import Session from "./components/Session";
