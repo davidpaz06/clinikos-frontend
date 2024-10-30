@@ -1,7 +1,7 @@
 import express from "express";
-import path  from "path";
-import argon2  from "argon2";
-import { fileURLToPath } from "url";
+import path from "path";
+import argon2 from "argon2";
+import fileURLToPath from "url";
 const app = express();
 
 import Database from "./components/Database";
@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.get("/health", (req, res) => {
   res.send("Server is running");
-})
+});
 //
 
 app.get("/signup", (req, res) => {

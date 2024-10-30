@@ -1,13 +1,13 @@
-import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Protected from "./Protected";
+import LandingPage from "./components/pages/LandingPage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<div>Home</div>} />
-        <Route path="/protected" element={<Protected />} />
+        <Route path="/" element={<LandingPage />} />
+
+        {/* <Route path="/landingpage" element={<LandingPage />} /> */}
       </Routes>
     </BrowserRouter>
   );
