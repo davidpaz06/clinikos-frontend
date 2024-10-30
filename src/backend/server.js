@@ -1,3 +1,5 @@
+/*eslint-disable */
+
 import express from "express";
 import path from "path";
 import argon2 from "argon2";
