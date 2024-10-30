@@ -19,14 +19,8 @@ class Database {
   async query(queryName, params) {
     const client = await this.pool.connect();
     try {
-      let query;
-      if (this.queries[queryName]) {
-        query = this.queries[queryName];
-      } else {
-        query = queryName;
-      }
-
-      const res = await client.query(query, params);
+      const query = this.queries[queryName] || queryName,
+        res = await client.query(query, params);
       return res;
     } catch (err) {
       console.error(`Error executing query:`, err);
