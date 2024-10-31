@@ -1,6 +1,0 @@
-{
-  "login": "SELECT * FROM public.user WHERE username = $1",
-  "checkUser": "SELECT * FROM public.user WHERE username = $1",
-  "register": "DO $$ DECLARE v_document_id INT; v_person_id INT; v_user_exists BOOLEAN; BEGIN SELECT EXISTS (SELECT 1 FROM \"user\" WHERE username = '$7') INTO v_user_exists; IF v_user_exists THEN RAISE EXCEPTION 'El usuario ya existe'; ELSE BEGIN TRANSACTION; INSERT INTO document (document_nu, document_type_id) VALUES ('$2', '$1') RETURNING document_id INTO v_document_id; INSERT INTO person (person_na, person_lna, person_eml, person_dir, document_id) VALUES ('$3', '$4', '$5', '$6', v_document_id) RETURNING person_id INTO v_person_id; INSERT INTO \"user\" (username, password, person_id) VALUES ('$7', '$8', v_person_id); COMMIT; END IF; END $$;",
-  "loadProfile": "SELECT * FROM public.user WHERE username = $1"
-}

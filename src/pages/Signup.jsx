@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./Signup.module.css";
+import styles from "./signup.module.css";
 
 const Signup = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    documentType: "1",
+    documentType: 1,
     documentNumber: "",
     name: "",
     lastname: "",
@@ -27,7 +27,7 @@ const Signup = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch("/register", {
+      const response = await fetch("http://localhost:3000/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +38,6 @@ const Signup = () => {
       if (response.ok) {
         navigate("/home");
       } else {
-        console.log(response);
         const error = await response.text();
         console.error("Error al registrar el usuario:", error);
         alert("Error al registrar el usuario");
@@ -46,6 +45,30 @@ const Signup = () => {
     } catch (error) {
       console.error("Error:", error);
       alert("Error al registrar el usuario");
+    }
+  };
+
+  const handleTest = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/test", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        // const data = await response.json();
+        // console.log(data);
+        console.log(response);
+      } else {
+        const error = await response.text();
+        console.error("Error al obtener los datos:", error);
+        alert("Error al obtener los datos");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error al obtener los datos");
     }
   };
 
@@ -59,6 +82,7 @@ const Signup = () => {
             <select
               id="documentType"
               name="documentType"
+              type="number"
               value={formData.documentType}
               onChange={handleChange}
             >
@@ -70,7 +94,7 @@ const Signup = () => {
           <div className={styles.formGroup}>
             <label htmlFor="documentNumber">Document Number</label>
             <input
-              type="text"
+              type="number"
               id="documentNumber"
               name="documentNumber"
               value={formData.documentNumber}
@@ -155,6 +179,7 @@ const Signup = () => {
             Register
           </button>
         </form>
+        <button onClick={handleTest}>test</button>
       </div>
     </div>
   );
