@@ -58,9 +58,9 @@ const Signup = () => {
       });
 
       if (response.ok) {
-        // const data = await response.json();
-        // console.log(data);
-        console.log(response);
+        const data = await response.json();
+        console.log(data);
+        // console.log(response);
       } else {
         const error = await response.text();
         console.error("Error al obtener los datos:", error);
