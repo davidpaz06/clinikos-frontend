@@ -6,11 +6,11 @@ const Signup = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     documentType: 1,
-    documentNumber: "",
-    name: "",
-    lastname: "",
-    email: "",
-    address: "",
+    documentNu: "",
+    personNa: "",
+    personLna: "",
+    personEml: "",
+    personDir: "",
     username: "",
     password: "",
   });
@@ -77,104 +77,51 @@ const Signup = () => {
       <div className={styles.container}>
         <h2>Registration Form</h2>
         <form onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <label htmlFor="documentType">Document Type</label>
-            <select
-              id="documentType"
-              name="documentType"
-              type="number"
-              value={formData.documentType}
-              onChange={handleChange}
-            >
-              <option value="1">V</option>
-              <option value="2">E</option>
-            </select>
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="documentNumber">Document Number</label>
-            <input
-              type="number"
-              id="documentNumber"
-              name="documentNumber"
-              value={formData.documentNumber}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="lastname">Lastname</label>
-            <input
-              type="text"
-              id="lastname"
-              name="lastname"
-              value={formData.lastname}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="address">Address</label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
+          {[
+            {
+              label: "Document Type",
+              type: "select",
+              name: "documentType",
+              options: [
+                { value: "1", label: "V" },
+                { value: "2", label: "E" },
+              ],
+            },
+            { label: "Document Number", type: "number", name: "documentNu" },
+            { label: "Name", type: "text", name: "personNa" },
+            { label: "Lastname", type: "text", name: "personLna" },
+            { label: "Email", type: "email", name: "personEml" },
+            { label: "Address", type: "text", name: "personDir" },
+            { label: "Username", type: "text", name: "username" },
+            { label: "Password", type: "password", name: "password" },
+          ].map((field, index) => (
+            <div className={styles.formGroup} key={index}>
+              <label htmlFor={field.name}>{field.label}</label>
+              {field.type === "select" ? (
+                <select
+                  id={field.name}
+                  name={field.name}
+                  value={formData[field.name]}
+                  onChange={handleChange}
+                >
+                  {field.options.map((option, idx) => (
+                    <option key={idx} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  type={field.type}
+                  id={field.name}
+                  name={field.name}
+                  value={formData[field.name]}
+                  onChange={handleChange}
+                  required
+                />
+              )}
+            </div>
+          ))}
           <button type="submit" className={styles.button}>
             Register
           </button>
