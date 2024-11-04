@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import styles from "./signup.module.css";
 
 const Signup = () => {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     documentType: 1,
     documentNu: "",
@@ -14,6 +13,8 @@ const Signup = () => {
     username: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,7 +37,7 @@ const Signup = () => {
       });
 
       if (response.ok) {
-        navigate("/home");
+        navigate("/home", { state: { username: formData.username } });
       } else {
         const error = await response.text();
         console.error("Error al registrar el usuario:", error);
@@ -45,30 +46,6 @@ const Signup = () => {
     } catch (error) {
       console.error("Error:", error);
       alert("Error al registrar el usuario");
-    }
-  };
-
-  const handleTest = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/test", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        // console.log(response);
-      } else {
-        const error = await response.text();
-        console.error("Error al obtener los datos:", error);
-        alert("Error al obtener los datos");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Error al obtener los datos");
     }
   };
 
@@ -126,7 +103,6 @@ const Signup = () => {
             Register
           </button>
         </form>
-        <button onClick={handleTest}>test</button>
       </div>
     </div>
   );
