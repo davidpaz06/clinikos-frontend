@@ -69,8 +69,8 @@ const Signup = () => {
               type: "select",
               name: "profile",
               options: [
-                { value: "1", label: "Patient" },
                 { value: "2", label: "Doctor" },
+                { value: "3", label: "Patient" },
               ],
             },
             { label: "Document Number", type: "number", name: "documentNu" },
