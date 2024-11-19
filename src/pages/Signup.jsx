@@ -76,7 +76,6 @@ const Signup = () => {
                 { value: "2", label: "E" },
               ],
             },
-
             { label: "Document Number", type: "number", name: "documentNu" },
             { label: "Name", type: "text", name: "personNa" },
             { label: "Lastname", type: "text", name: "personLna" },
