@@ -4,11 +4,13 @@ import styles from "./signup.module.css";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
+    profileId: 3,
     documentType: 1,
     documentNu: "",
     personNa: "",
     personLna: "",
     personEml: "",
+    personPho: "",
     personDir: "",
     username: "",
     password: "",
@@ -34,6 +36,7 @@ const Signup = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
+        credentials: "include",
       });
 
       if (response.ok) {
@@ -56,6 +59,15 @@ const Signup = () => {
         <form onSubmit={handleSubmit}>
           {[
             {
+              label: "Profile",
+              type: "select",
+              name: "profileId",
+              options: [
+                { value: "2", label: "Doctor" },
+                { value: "3", label: "Patient" },
+              ],
+            },
+            {
               label: "Document Type",
               type: "select",
               name: "documentType",
@@ -64,10 +76,12 @@ const Signup = () => {
                 { value: "2", label: "E" },
               ],
             },
+
             { label: "Document Number", type: "number", name: "documentNu" },
             { label: "Name", type: "text", name: "personNa" },
             { label: "Lastname", type: "text", name: "personLna" },
             { label: "Email", type: "email", name: "personEml" },
+            { label: "Phone", type: "number", name: "personPho" },
             { label: "Address", type: "text", name: "personDir" },
             { label: "Username", type: "text", name: "username" },
             { label: "Password", type: "password", name: "password" },
