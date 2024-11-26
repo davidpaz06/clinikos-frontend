@@ -55,7 +55,7 @@ const Signup = () => {
   return (
     <div className={styles.signup}>
       <div className={styles.container}>
-        <h2>Registration Form</h2>
+        <h1>Register</h1>
         <form onSubmit={handleSubmit}>
           {[
             {
@@ -77,10 +77,10 @@ const Signup = () => {
               ],
             },
             { label: "Document Number", type: "number", name: "documentNu" },
-            { label: "Name", type: "text", name: "personNa" },
-            { label: "Lastname", type: "text", name: "personLna" },
+            { label: "First name", type: "text", name: "personNa" },
+            { label: "Last name", type: "text", name: "personLna" },
             { label: "Email", type: "email", name: "personEml" },
-            { label: "Phone", type: "number", name: "personPho" },
+            { label: "Phone", type: "text", name: "personPho" },
             { label: "Address", type: "text", name: "personDir" },
             { label: "Username", type: "text", name: "username" },
             { label: "Password", type: "password", name: "password" },

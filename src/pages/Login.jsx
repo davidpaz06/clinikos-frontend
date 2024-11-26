@@ -47,7 +47,7 @@ const Login = () => {
   return (
     <div className={styles.login}>
       <div className={styles.container}>
-        <h2>Login</h2>
+        <h1>Login</h1>
         <form onSubmit={handleSubmit}>
           {["username", "password"].map((field) => (
             <div key={field} className={styles.formGroup}>

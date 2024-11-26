@@ -4,8 +4,13 @@ import styles from "./landing.module.css";
 const Landing = () => {
   return (
     <div className={styles.landingPage}>
+      <div className={styles.clinikOS}>
+        <h1>ClinikOS</h1>
+        <p>Medical solutions, at your fingertips.</p>
+      </div>
+      <h1 className={styles.welcome}>Welcome to Our Landing Page</h1>
+
       <div className={styles.container}>
-        <h1>Welcome to Our Landing Page</h1>
         <Link to="/login">
           <button className={styles.button}>Log in</button>
         </Link>
