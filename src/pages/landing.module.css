@@ -70,11 +70,11 @@
 }
 
 .welcome:hover ~ .container {
-  height: 30%;
+  height: 25%;
 }
 
 .container:hover {
-  height: 30%;
+  height: 25%;
 }
 
 .button {
