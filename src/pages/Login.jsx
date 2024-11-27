@@ -1,47 +1,25 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styles from "./login.module.css";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-  });
-
-  const navigate = useNavigate();
+  const { handleLogin } = useAuth(),
+    [form, setForm] = useState({
+      username: "",
+      password: "",
+    });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setForm({
+      ...form,
       [name]: value,
     });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const response = await fetch("http://localhost:3000/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-        credentials: "include",
-      });
-
-      if (response.ok) {
-        navigate("/home", { state: { username: formData.username } });
-      } else {
-        const error = await response.text();
-        console.error("Error al iniciar sesión:", error);
-        alert("Error al iniciar sesión");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Error al iniciar sesión");
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await handleLogin(form.username, form.password);
   };
 
   return (
@@ -58,7 +36,7 @@ const Login = () => {
                 type={field === "password" ? "password" : "text"}
                 id={field}
                 name={field}
-                value={formData[field]}
+                value={form[field]}
                 onChange={handleChange}
                 required
               />

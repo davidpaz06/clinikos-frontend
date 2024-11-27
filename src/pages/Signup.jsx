@@ -1,55 +1,33 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styles from "./signup.module.css";
+import { useAuth } from "../context/AuthContext";
 
 const Signup = () => {
-  const [formData, setFormData] = useState({
-    profileId: 3,
-    documentType: 1,
-    documentNu: "",
-    personNa: "",
-    personLna: "",
-    personEml: "",
-    personPho: "",
-    personDir: "",
-    username: "",
-    password: "",
-  });
-
-  const navigate = useNavigate();
+  const { handleSignup } = useAuth(),
+    [form, setForm] = useState({
+      profileId: 3,
+      documentType: 1,
+      documentNu: "",
+      personNa: "",
+      personLna: "",
+      personEml: "",
+      personPho: "",
+      personDir: "",
+      username: "",
+      password: "",
+    });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setForm({
+      ...form,
       [name]: value,
     });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const response = await fetch("http://localhost:3000/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-        credentials: "include",
-      });
-
-      if (response.ok) {
-        navigate("/home", { state: { username: formData.username } });
-      } else {
-        const error = await response.text();
-        console.error("Error al registrar el usuario:", error);
-        alert("Error al registrar el usuario");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Error al registrar el usuario");
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await handleSignup(form);
   };
 
   return (
@@ -91,7 +69,7 @@ const Signup = () => {
                 <select
                   id={field.name}
                   name={field.name}
-                  value={formData[field.name]}
+                  value={form[field.name]}
                   onChange={handleChange}
                 >
                   {field.options.map((option, idx) => (
@@ -105,7 +83,7 @@ const Signup = () => {
                   type={field.type}
                   id={field.name}
                   name={field.name}
-                  value={formData[field.name]}
+                  value={form[field.name]}
                   onChange={handleChange}
                   required
                 />

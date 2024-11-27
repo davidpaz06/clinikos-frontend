@@ -1,11 +1,10 @@
-/*eslint-disable*/
-import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import useProtected from "../hooks/useProtected";
 
 const Home = () => {
-  const location = useLocation();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const { username } = location.state || {};
 
   const newAppointment = async () => {
     try {
@@ -41,33 +40,11 @@ const Home = () => {
     }
   };
 
-  const logout = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/logout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
-
-      if (response.ok) {
-        alert("Logged out successfully");
-        navigate("/");
-      } else {
-        const error = await response.text();
-        console.error("Error logging out:", error);
-        alert("Error logging out");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Error logging out");
-    }
-  };
+  useProtected();
 
   return (
     <div>
-      <h1>Welcome home, {username}</h1>
+      <h1 style={{ color: "#000" }}>Welcome home, {user}</h1>
       <button onClick={newAppointment}>New Appointment</button>
       <button onClick={logout}>Log Out</button>
     </div>
