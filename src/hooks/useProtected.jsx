@@ -9,6 +9,8 @@ function useProtected() {
   useEffect(() => {
     if (user === null) {
       navigate("/login");
+    } else {
+      navigate("/home");
     }
   }, [user, navigate]);
 }
