@@ -8,7 +8,8 @@ function useProtected() {
 
   useEffect(() => {
     if (user === null) {
-      navigate("/login");
+      // navigate("/login");
+      navigate("/home");
     } else {
       navigate("/home");
     }

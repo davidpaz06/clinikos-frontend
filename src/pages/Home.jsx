@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import useProtected from "../hooks/useProtected";
+import styles from "./home.module.css";
 
 const Home = () => {
   const { user, logout } = useAuth();
@@ -43,7 +44,7 @@ const Home = () => {
   useProtected();
 
   return (
-    <div>
+    <div className={styles.home}>
       <h1 style={{ color: "#000" }}>Welcome home, {user}</h1>
       <button onClick={newAppointment}>New Appointment</button>
       <button onClick={logout}>Log Out</button>

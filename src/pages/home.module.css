@@ -1,0 +1,8 @@
+.home {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  height: 100%;
+  border: 1px solid transparent;
+  background: linear-gradient(to right, rgb(3, 176, 124), #0caea9);
+  color: #f0f0f0;
+}
