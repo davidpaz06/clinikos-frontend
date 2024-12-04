@@ -1,8 +1,54 @@
 .home {
   font-family: Arial, sans-serif;
+  height: 100vh;
+  width: 100vw;
   margin: 0;
-  height: 100%;
   border: 1px solid transparent;
   background: linear-gradient(to right, rgb(3, 176, 124), #0caea9);
-  color: #f0f0f0;
+  color: black;
+  grid-template-columns: 350px 1fr;
+  display: grid;
+  text-align: center;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px;
+  padding: 20px;
+}
+
+.sidebar h1 {
+  color: #0caea9;
+  font-size: 3em;
+  margin: 0;
+}
+
+.option_container {
+}
+
+.settings {
+  height: 30px;
+  padding: 10px;
+  margin-top: auto;
+  color: white;
+  cursor: pointer;
+  background-color: #0caea9ca;
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.icon {
+  height: 100%;
+}
+
+.logout {
+  position: fixed;
+  height: 40px;
+  width: 40px;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
 }
