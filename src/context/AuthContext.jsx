@@ -22,7 +22,7 @@ export function AuthProvider({ children }) {
       });
 
       if (response.ok) {
-        setUser({ username: form.username, profile: form.profile });
+        setUser({ username: form.username });
         navigate("/home");
       } else {
         const error = await response.text();
@@ -47,8 +47,7 @@ export function AuthProvider({ children }) {
       });
 
       if (response.ok) {
-        const data = await response.json();
-        setUser({ username: data.username, profile: data.profile });
+        setUser({ username });
         navigate("/home");
       } else {
         const error = await response.text();
@@ -61,9 +60,28 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const logout = () => {
-    setUser(null);
-    navigate("/");
+  const logout = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      if (response.ok) {
+        setUser(null);
+        alert("Logged out successfully");
+        navigate("/");
+      } else {
+        const error = await response.text();
+        console.error("Error logging out:", error);
+        alert("Error logging out");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error logging out");
+    }
   };
 
   return (

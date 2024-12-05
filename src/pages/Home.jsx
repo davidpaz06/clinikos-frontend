@@ -22,7 +22,7 @@ const Home = () => {
 
       <div className={styles.content}>
         {/* ------------------------------------------------------------------------------------- */}
-        <h2>Welcome, {user}</h2>
+        <h2>Welcome, {user ? user.username : "Guest"}</h2>
 
         <UpcomingAppointments />
 
