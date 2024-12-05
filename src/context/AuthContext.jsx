@@ -22,8 +22,7 @@ export function AuthProvider({ children }) {
       });
 
       if (response.ok) {
-        setUser(form.username);
-        navigate("/home");
+        setUser({ username: form.username, profile: form.profile });
       } else {
         const error = await response.text();
         console.error("Error al registrar el usuario:", error);
@@ -47,7 +46,8 @@ export function AuthProvider({ children }) {
       });
 
       if (response.ok) {
-        setUser(username);
+        const data = await response.json();
+        setUser({ username: data.username, profile: data.profile });
         navigate("/home");
       } else {
         const error = await response.text();
@@ -60,41 +60,13 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const logout = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/logout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
-
-      if (response.ok) {
-        setUser(null);
-        alert("Logged out successfully");
-        navigate("/");
-      } else {
-        const error = await response.text();
-        console.error("Error logging out:", error);
-        alert("Error logging out");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Error logging out");
-    }
+  const logout = () => {
+    setUser(null);
+    navigate("/");
   };
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        setUser,
-        handleSignup,
-        handleLogin,
-        logout,
-      }}
-    >
+    <AuthContext.Provider value={{ user, handleSignup, handleLogin, logout }}>
       {children}
     </AuthContext.Provider>
   );
