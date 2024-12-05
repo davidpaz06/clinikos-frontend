@@ -1,4 +1,3 @@
-import React from "react";
 import { useAuth } from "../context/AuthContext";
 import useProtected from "../hooks/useProtected";
 import styles from "./home.module.css";
