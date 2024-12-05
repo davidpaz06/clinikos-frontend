@@ -7,7 +7,11 @@ import { useNavigate } from "react-router-dom";
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    // Recuperar el usuario desde sessionStorage al cargar la aplicación
+    const savedUser = sessionStorage.getItem("user");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
   const navigate = useNavigate();
 
   const handleSignup = async (form) => {
@@ -48,6 +52,7 @@ export function AuthProvider({ children }) {
 
       if (response.ok) {
         setUser({ username });
+        sessionStorage.setItem("user", JSON.stringify({ username }));
         navigate("/home");
       } else {
         const error = await response.text();

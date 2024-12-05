@@ -4,6 +4,7 @@ import styles from "./home.module.css";
 import svgs from "../assets/svg/svg.js";
 import Sidebar from "../components/Sidebar.jsx";
 import UpcomingAppointments from "../components/UpcomingAppointments.jsx";
+import Appointments from "../components/Appointments.jsx";
 
 const Home = () => {
   const { user, logout } = useAuth();
@@ -24,7 +25,8 @@ const Home = () => {
         {/* ------------------------------------------------------------------------------------- */}
         <h2>Welcome, {user ? user.username : "Guest"}</h2>
 
-        <UpcomingAppointments />
+        {/* <UpcomingAppointments /> */}
+        <Appointments />
 
         {/* ------------------------------------------------------------------------------------- */}
         <img

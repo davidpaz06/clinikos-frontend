@@ -1,31 +1,11 @@
-.signup {
-  font-family: Arial, sans-serif;
-  margin: 0;
+.appointments {
+  display: flex;
+  align-self: center;
+  justify-content: center;
   height: 100%;
-  border: 1px solid transparent;
-  background: linear-gradient(to right, rgb(3, 176, 124), #0caea9);
-  color: #f0f0f0;
-  overflow-y: scroll;
-  scrollbar-width: none;
-}
-
-.container {
-  width: 50%;
-  margin: 50px auto;
-  border: 2px solid #dddddd;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background-color: transparent;
-}
-
-h1 {
-  margin-bottom: 20px;
-  color: #f0f0f0;
 }
 
 .formGroup {
-  margin-bottom: 15px;
   text-align: left;
 }
 
