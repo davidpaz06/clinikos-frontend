@@ -17,7 +17,6 @@ const Sidebar = () => {
       "Hospitalizations",
       "Patients",
       "Exams",
-      "History",
     ],
     doctor: ["Appointments", "Patients", "Hospitalizations", "History"],
     patient: ["History", "Appointments", "Medics"],
