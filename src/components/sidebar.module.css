@@ -1,0 +1,39 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px;
+  padding: 20px;
+}
+
+.sidebar h1 {
+  color: #0caea9;
+  font-size: 3em;
+  margin: 0;
+}
+
+.option_container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.option {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.settings {
+  height: 30px;
+  padding: 10px;
+  margin-top: auto;
+  color: white;
+  cursor: pointer;
+  background-color: #0caea9ca;
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.icon {
+  height: 100%;
+}

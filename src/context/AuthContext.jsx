@@ -23,6 +23,7 @@ export function AuthProvider({ children }) {
 
       if (response.ok) {
         setUser({ username: form.username, profile: form.profile });
+        navigate("/home");
       } else {
         const error = await response.text();
         console.error("Error al registrar el usuario:", error);

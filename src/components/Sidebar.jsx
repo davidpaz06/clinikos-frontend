@@ -1,13 +1,13 @@
 import React from "react";
-import { useAuth } from "../context/AuthContext";
-import styles from "./home.module.css";
+import { useAuth } from "../context/AuthContext.jsx";
+import styles from "./sidebar.module.css";
 import svgs from "../assets/svg/svg.js";
 
 const Sidebar = () => {
   const { user } = useAuth();
 
   // Hardcode the user profile for testing purposes
-  const hardcodedUser = { ...user, profile: "admin" }; // Cambia "admin" por el perfil que desees probar
+  const hardcodedUser = { ...user, profile: "admin" };
 
   const options = {
     admin: [
