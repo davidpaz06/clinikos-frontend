@@ -1,4 +1,3 @@
-import React from "react";
 import { useAuth } from "../context/AuthContext.jsx";
 import styles from "./sidebar.module.css";
 import svgs from "../assets/svg/svg.js";

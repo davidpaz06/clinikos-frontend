@@ -3,17 +3,23 @@ import styles from "./appointments.module.css";
 
 const Appointments = () => {
   const [appointmentForm, setAppointmentForm] = useState({
+    department: "",
+    doctor: "",
     date: "",
     time: "",
-    document: "",
-    department_de: "",
-    // doctor_de: "",
   });
 
+  //----------------------------------------------
+  // CALL THE DATABASE TO GET THE DOCTORS
+  // CALL THE DATABASE TO GET THE DEPARTMENTS
+
   const departments = [
-    { value: "3", name: "Traumatology" },
-    { value: "4", name: "Psychology" },
+    { value: "1", name: "Cardiology" },
+    { value: "2", name: "Traumatology" },
+    { value: "3", name: "Psychology" },
   ];
+
+  //----------------------------------------------
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,27 +43,26 @@ const Appointments = () => {
           methodName: "createAppointment",
           objectName: "Appointment",
           params: {
-            appointment_dt: appointmentForm.date,
-            appointment_hr: appointmentForm.time,
-            document_nu: appointmentForm.document_nu,
-            department_de: appointmentForm.departmentName,
-            // doctor_de: appointmentForm.doctorName,
+            department: appointmentForm.department,
+            doctor: appointmentForm.doctor,
+            date: appointmentForm.date,
+            hour: appointmentForm.time,
           },
         }),
         credentials: "include",
       });
 
       if (response.ok) {
-        alert("Logged out successfully");
+        alert("Appointment created successfully");
         navigate("/");
       } else {
         const error = await response.text();
-        console.error("Error logging out:", error);
-        alert("Error logging out");
+        console.error("Error creating an appointment", error);
+        alert("Error creating an appointment");
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Error logging out");
+      alert("Error creating an appointment");
     }
   };
 
@@ -83,9 +88,11 @@ const Appointments = () => {
         })}
 
         <div>
-          <label htmlFor="departmentName">Department </label>
+          <label className={styles.formGroup} htmlFor="departmentName">
+            Department{" "}
+          </label>
           <select
-            name="department_de"
+            name="department"
             value={appointmentForm.departmentName}
             onChange={handleChange}
           >
