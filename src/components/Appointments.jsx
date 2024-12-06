@@ -3,10 +3,10 @@ import styles from "./appointments.module.css";
 
 const Appointments = () => {
   const [appointmentForm, setAppointmentForm] = useState({
-    department: "",
-    doctor: "",
     date: "",
     time: "",
+    document_number: "",
+    department: "",
   });
 
   //----------------------------------------------
@@ -14,9 +14,9 @@ const Appointments = () => {
   // CALL THE DATABASE TO GET THE DEPARTMENTS
 
   const departments = [
-    { value: "1", name: "Cardiology" },
-    { value: "2", name: "Traumatology" },
-    { value: "3", name: "Psychology" },
+    { value: "1", name: "Dentist" },
+    { value: "2", name: "Psychology" },
+    { value: "3", name: "Traumatology" },
   ];
 
   //----------------------------------------------
@@ -43,10 +43,10 @@ const Appointments = () => {
           methodName: "createAppointment",
           objectName: "Appointment",
           params: {
-            department: appointmentForm.department,
-            doctor: appointmentForm.doctor,
-            date: appointmentForm.date,
             hour: appointmentForm.time,
+            date: appointmentForm.date,
+            document_number: appointmentForm.document_number,
+            department: appointmentForm.department,
           },
         }),
         credentials: "include",
@@ -54,7 +54,6 @@ const Appointments = () => {
 
       if (response.ok) {
         alert("Appointment created successfully");
-        navigate("/");
       } else {
         const error = await response.text();
         console.error("Error creating an appointment", error);
@@ -72,7 +71,7 @@ const Appointments = () => {
         {[
           { label: "Date", type: "date", name: "date" },
           { label: "Time", type: "time", name: "time" },
-          { label: "Document ", type: "number", name: "document_nu" },
+          { label: "Document ", name: "document_number" },
         ].map((input) => {
           return (
             <div key={input.name}>
