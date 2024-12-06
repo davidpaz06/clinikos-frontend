@@ -17,10 +17,26 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
+  gap: 10px;
 }
+
 .option {
   padding: 10px;
+  border-radius: 30px;
   cursor: pointer;
+  background-color: #0caea9;
+  color: white;
+  font-weight: 600;
+}
+
+.option:hover {
+  background-color: #0caea9ca;
+}
+
+.option.active {
+  background-color: white;
+  color: #0caea9;
+  border: 2px solid #0caea9;
 }
 
 .settings {
