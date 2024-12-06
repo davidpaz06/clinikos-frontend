@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import { useActiveSection } from "../context/ActiveSectionContext";
 import useProtected from "../hooks/useProtected";
 import styles from "./home.module.css";
 import svgs from "../assets/svg/svg.js";
@@ -7,6 +8,7 @@ import Sidebar from "../components/Sidebar.jsx";
 
 const Home = () => {
   const { user, logout } = useAuth();
+  const { activeSection } = useActiveSection();
   const [menus, setMenus] = useState([]);
 
   const handleLogout = () => {
@@ -41,11 +43,13 @@ const Home = () => {
     fetchMenus();
   }, []);
 
+  console.log(menus);
+
   useProtected();
 
   return (
     <div className={styles.home}>
-      <Sidebar />
+      <Sidebar menus={menus} />
 
       <div className={styles.content}>
         {/* ------------------------------------------------------------------------------------- */}

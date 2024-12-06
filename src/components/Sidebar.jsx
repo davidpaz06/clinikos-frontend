@@ -1,27 +1,15 @@
 import { useAuth } from "../context/AuthContext.jsx";
+import { useActiveSection } from "../context/ActiveSectionContext.jsx";
 import styles from "./sidebar.module.css";
 import svgs from "../assets/svg/svg.js";
 
-const Sidebar = () => {
+const Sidebar = ({ menus }) => {
   const { user } = useAuth();
+  const { activeSection, setActiveSection } = useActiveSection();
 
-  // Hardcode the user profile for testing purposes
-  const hardcodedUser = { ...user, profile: "admin" };
-
-  const options = {
-    admin: [
-      "Appointments",
-      "History",
-      "Medics",
-      "Hospitalizations",
-      "Patients",
-      "Exams",
-    ],
-    doctor: ["Appointments", "Patients", "Hospitalizations", "History"],
-    patient: ["History", "Appointments", "Medics"],
+  const handleOptionClick = (option) => {
+    setActiveSection(option);
   };
-
-  const userOptions = options[user?.profile] || options[hardcodedUser.profile];
 
   return (
     <div className={styles.sidebar}>
@@ -30,9 +18,15 @@ const Sidebar = () => {
       </div>
 
       <div className={styles.option_container}>
-        {userOptions.map((option) => (
-          <div key={option} className={styles.option}>
-            {option}
+        {menus.map((menu) => (
+          <div
+            key={menu.menu_name}
+            className={`${styles.option} ${
+              activeSection === menu.menu_name ? styles.active : ""
+            }`}
+            onClick={() => handleOptionClick(menu)}
+          >
+            {menu.menu_name}
           </div>
         ))}
       </div>

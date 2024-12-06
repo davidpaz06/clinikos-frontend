@@ -75,7 +75,6 @@ export function AuthProvider({ children }) {
       });
       if (response.ok) {
         setUser(null);
-        alert("Logged out successfully");
         navigate("/");
       } else {
         const error = await response.text();
