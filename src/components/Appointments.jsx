@@ -2,24 +2,20 @@ import { useState } from "react";
 import styles from "./appointments.module.css";
 
 const Appointments = () => {
-  const [appointmentForm, setAppointmentForm] = useState({
+  const initAppointmentForm = {
     date: "",
     time: "",
     document_number: "",
     department: "",
-  });
+  };
 
-  //----------------------------------------------
-  // CALL THE DATABASE TO GET THE DOCTORS
-  // CALL THE DATABASE TO GET THE DEPARTMENTS
+  const [appointmentForm, setAppointmentForm] = useState(initAppointmentForm);
 
   const departments = [
     { value: "1", name: "Dentist" },
     { value: "2", name: "Psychology" },
     { value: "3", name: "Traumatology" },
   ];
-
-  //----------------------------------------------
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,7 +27,6 @@ const Appointments = () => {
 
   const newAppointment = async (e) => {
     e.preventDefault();
-    console.log(appointmentForm);
 
     try {
       const response = await fetch("http://localhost:3000/toProcess", {
@@ -52,13 +47,13 @@ const Appointments = () => {
         credentials: "include",
       });
 
-      const result = await response.json();
-
       if (response.ok) {
-        alert(result.message);
+        alert("Appointment created successfully");
+        setAppointmentForm(initAppointmentForm);
       } else {
-        console.error("Error creating an appointment", result.message);
-        alert("Error creating an appointment: " + result.message);
+        const error = await response.text();
+        console.error("Error creating an appointment", error);
+        alert("Error creating an appointment");
       }
     } catch (error) {
       console.error("Error:", error);

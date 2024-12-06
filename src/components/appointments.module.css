@@ -1,8 +1,5 @@
 .appointments {
-  display: flex;
-  align-self: center;
-  justify-content: center;
-  height: 100%;
+  width: 50%;
 }
 
 .formGroup {
@@ -33,6 +30,7 @@ input::-webkit-inner-spin-button {
   border-radius: 10px;
   color: #f0f0f0;
   margin-bottom: 10px;
+  cursor: pointer;
 
   /* -webkit-appearance: none; */
 }
@@ -43,16 +41,17 @@ input::-webkit-inner-spin-button {
 }
 
 .button {
-  display: inline-block;
-  margin: 10px;
+  display: flex;
+  margin: 10px auto;
   padding: 10px 25px;
   font-size: 16px;
   font-weight: bold;
   color: #0fb19f;
   background-color: #f0f0f0;
   border: 2px solid #f0f0f0;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
+  align-self: center;
 }
 
 .button:hover {

@@ -69,7 +69,9 @@ const Home = () => {
 
       <div className={styles.content}>
         {/* ------------------------------------------------------------------------------------- */}
-        <h2>Welcome, {user ? user.username : "Guest"}</h2>
+        <h2 className={styles.welcome}>
+          Welcome, {user ? user.username : "Guest"}
+        </h2>
 
         {ActiveComponent === null ? (
           <UpcomingAppointments />
