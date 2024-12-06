@@ -11,9 +11,9 @@
 
 .formGroup label {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   color: white;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 input::-webkit-outer-spin-button,
@@ -32,6 +32,8 @@ input::-webkit-inner-spin-button {
   border: 2px solid #dddddd;
   border-radius: 10px;
   color: #f0f0f0;
+  margin-bottom: 10px;
+
   /* -webkit-appearance: none; */
 }
 
