@@ -5,7 +5,7 @@ import { createContext, useContext, useState } from "react";
 const ActiveSectionContext = createContext(null);
 
 export function ActiveSectionProvider({ children }) {
-  const [activeSection, setActiveSection] = useState("Upcoming Appointments");
+  const [activeSection, setActiveSection] = useState(null);
 
   return (
     <ActiveSectionContext.Provider value={{ activeSection, setActiveSection }}>

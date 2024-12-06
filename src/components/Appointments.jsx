@@ -52,12 +52,13 @@ const Appointments = () => {
         credentials: "include",
       });
 
+      const result = await response.json();
+
       if (response.ok) {
-        alert("Appointment created successfully");
+        alert(result.message);
       } else {
-        const error = await response.text();
-        console.error("Error creating an appointment", error);
-        alert("Error creating an appointment");
+        console.error("Error creating an appointment", result.message);
+        alert("Error creating an appointment: " + result.message);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -103,22 +104,6 @@ const Appointments = () => {
             ))}
           </select>
         </div>
-
-        {/* <div>
-          <label htmlFor="doctorName">Doctor</label>
-          <select
-            name="doctor_de"
-            value={appointmentForm.doctorName}
-            onChange={handleChange}
-          >
-            <option value="">Select a doctor</option>
-            {doctors.map((doctor) => (
-              <option key={doctor.name} value={doctor.name}>
-                {doctor.name}
-              </option>
-            ))}
-          </select>
-        </div> */}
 
         <button className={styles.button} type="submit">
           Create Appointment

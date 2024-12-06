@@ -5,6 +5,13 @@ import useProtected from "../hooks/useProtected";
 import styles from "./home.module.css";
 import svgs from "../assets/svg/svg.js";
 import Sidebar from "../components/Sidebar.jsx";
+import UpcomingAppointments from "../components/UpcomingAppointments.jsx";
+import Appointments from "../components/Appointments.jsx";
+import History from "../components/History.jsx";
+import Doctors from "../components/Doctors.jsx";
+import Hospitalizations from "../components/Hospitalizations.jsx";
+import Patients from "../components/Patients.jsx";
+import Exams from "../components/Exams.jsx";
 
 const Home = () => {
   const { user, logout } = useAuth();
@@ -17,6 +24,17 @@ const Home = () => {
       logout();
     }
   };
+
+  const sectionComponents = {
+    Appointments: Appointments,
+    History: History,
+    Doctors: Doctors,
+    Hospitalizations: Hospitalizations,
+    Patients: Patients,
+    Exams: Exams,
+  };
+
+  const ActiveComponent = sectionComponents[activeSection] || null;
 
   useEffect(() => {
     const fetchMenus = async () => {
@@ -43,8 +61,6 @@ const Home = () => {
     fetchMenus();
   }, []);
 
-  console.log(menus);
-
   useProtected();
 
   return (
@@ -54,6 +70,12 @@ const Home = () => {
       <div className={styles.content}>
         {/* ------------------------------------------------------------------------------------- */}
         <h2>Welcome, {user ? user.username : "Guest"}</h2>
+
+        {ActiveComponent === null ? (
+          <UpcomingAppointments />
+        ) : (
+          <ActiveComponent />
+        )}
 
         {/* ------------------------------------------------------------------------------------- */}
         <img

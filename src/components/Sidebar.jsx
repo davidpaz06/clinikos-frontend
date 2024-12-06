@@ -1,14 +1,14 @@
-import { useAuth } from "../context/AuthContext.jsx";
 import { useActiveSection } from "../context/ActiveSectionContext.jsx";
 import styles from "./sidebar.module.css";
 import svgs from "../assets/svg/svg.js";
 
 const Sidebar = ({ menus }) => {
-  const { user } = useAuth();
   const { activeSection, setActiveSection } = useActiveSection();
 
   const handleOptionClick = (option) => {
-    setActiveSection(option);
+    option.menu_name === activeSection
+      ? setActiveSection(null)
+      : setActiveSection(option.menu_name);
   };
 
   return (
