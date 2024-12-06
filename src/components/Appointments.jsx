@@ -97,7 +97,7 @@ const Appointments = () => {
           >
             <option value="">Select a department</option>
             {departments.map((department) => (
-              <option key={department.name} value={department.name}>
+              <option key={department.name} value={department.value}>
                 {department.name}
               </option>
             ))}
